@@ -1,0 +1,93 @@
+.Welcome-root {
+  padding: 30px;
+  margin: 0 auto;
+  text-align: center;
+
+  .logo {
+    height: 130px;
+    padding: 20px;
+    transition: filter 300ms;
+    will-change: filter;
+  }
+
+  .logo:hover {
+    filter: drop-shadow(0 0 20px #646cffaa);
+  }
+
+  .logo.react:hover {
+    filter: drop-shadow(0 0 20px #61dafbaa);
+  }
+
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+
+  .card {
+    padding: 20px;
+
+    p {
+      margin-top: 50px;
+      font-size: 18px;
+    }
+  }
+
+  .read-the-docs {
+    color: #888;
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 45px;
+    line-height: 1.1;
+  }
+
+  button {
+    padding: 10px 20px;
+    /* prettier-ignore */
+    border: 1Px solid transparent;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 500;
+    transition: border-color 0.25s;
+  }
+
+  button:hover {
+    border-color: #646cff;
+  }
+
+  button:focus,
+  button:focus-visible {
+    /* prettier-ignore */
+    outline: 4Px auto -webkit-focus-ring-color;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      background-color: #fff;
+      color: #213547;
+    }
+
+    a:hover {
+      color: #747bff;
+    }
+
+    button {
+      background-color: #f9f9f9;
+    }
+  }
+}
