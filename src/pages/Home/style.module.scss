@@ -1,0 +1,9 @@
+.Home-page {
+  background-color: antiquewhite;
+
+  :global {
+    .title {
+      color: cadetblue;
+    }
+  }
+}

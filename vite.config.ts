@@ -55,6 +55,9 @@ export default defineConfig(({ command, mode }) => {
     ],
 
     css: {
+      modules: {
+        generateScopedName: '[local]___[hash:base64:5]',
+      },
       // 引入预处理全局 CSS
       // https://cn.vitejs.dev/config/#css-preprocessoroptions
       preprocessorOptions: {
