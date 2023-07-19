@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import esbuild from 'rollup-plugin-esbuild';
+import demandImport from 'vite-plugin-demand-import';
 import { visualizer } from 'rollup-plugin-visualizer'; // 打包模块可视化分析
 import compressPlugin from 'vite-plugin-compression'; // 使用 gzip 压缩资源
 import { createHtmlPlugin } from 'vite-plugin-html'; // 插入数据到 index.html
@@ -22,6 +23,14 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       react(),
       splitVendorChunkPlugin(),
+      demandImport({
+        lib: 'antd-mobile',
+        resolver: {
+          js({ name }) {
+            return `antd-mobile/es/components/${name}`;
+          },
+        },
+      }),
       createHtmlPlugin({
         minify: false,
         inject: {
@@ -37,14 +46,14 @@ export default defineConfig(({ command, mode }) => {
           gzipSize: true,
           brotliSize: true,
         }),
-      !isBuildReport &&
-        command === 'build' &&
-        compressPlugin({
-          ext: '.gz',
-          filter: /\.(js|css)$/i,
-          threshold: 10240,
-          deleteOriginFile: true,
-        }),
+      // !isBuildReport &&
+      //   command === 'build' &&
+      //   compressPlugin({
+      //     ext: '.gz',
+      //     filter: /\.(js|css)$/i,
+      //     threshold: 10240,
+      //     deleteOriginFile: true,
+      //   }),
       // 解决 dev 模式无法在 Chrome 70 下使用 optional chaining 语法，https://github.com/vitejs/vite/issues/5222
       // 目前钉钉 webview 的内核是 Chrome/69.x.x，如需在钉钉上调试，请启用 esbuild
       {
@@ -64,6 +73,11 @@ export default defineConfig(({ command, mode }) => {
         scss: {
           additionalData: "@import '@/design/flexible/flexible.scss';",
         },
+        // less: {
+        //   javascriptEnabled: true,
+        //   modifyVars: {
+        //   },
+        // },
       },
       postcss: {
         plugins: [
