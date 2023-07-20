@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd-mobile';
 
-import './style.scss';
+import './Mine.scss';
 
 export default function About() {
   const navigate = useNavigate();

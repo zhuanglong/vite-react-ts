@@ -1,5 +1,5 @@
 import { sleep, wrapPromise } from '@/utils';
-import styles from './style.module.scss';
+import styles from './Home.module.scss';
 
 const fetchFakeData = async () => {
   try {

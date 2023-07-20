@@ -1,4 +1,4 @@
-import './style.scss';
+import './Message.scss';
 
 export default function Message() {
   return (

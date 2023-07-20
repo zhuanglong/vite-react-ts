@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 import { Skeleton as AntdSkeleton } from 'antd-mobile';
 import clsx from 'clsx';
 
-import './style.scss';
+import './Skeleton.scss';
 
 interface PropsType {
   className?: string;

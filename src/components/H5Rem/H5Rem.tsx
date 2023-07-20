@@ -1,4 +1,4 @@
-import './style.scss';
+import './H5Rem.scss';
 
 export default function H5Rem() {
   return (

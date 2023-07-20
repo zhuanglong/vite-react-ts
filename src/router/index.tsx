@@ -4,7 +4,7 @@ import { createHashRouter } from 'react-router-dom';
 import Skeleton from '@/components/Skeleton';
 
 import MainLayout from '@/layouts/MainLayout';
-import NoMatch from '@/pages/NoMatch/NoMatch';
+import NoFound from '@/pages/NoFound/NoFound';
 import Login from '@/pages/Login/Login';
 // import Home from '@/pages/Home/Home';
 // import Message from '@/pages/Message/Message';
@@ -63,7 +63,7 @@ const router = createHashRouter([
   },
   {
     path: '*',
-    element: <NoMatch />,
+    element: <NoFound />,
   },
 ]);
 

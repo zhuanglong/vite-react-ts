@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import './style.scss';
+import './NoFound.scss';
 
-export default function NoMatch() {
+export default function NoFound() {
   return (
-    <div className="NoMatch-page">
+    <div className="NoFound-page">
       <h1>Nothing to see here!</h1>
       <p>
         <Link to="/">Go to the home page</Link>

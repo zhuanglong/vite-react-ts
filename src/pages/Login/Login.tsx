@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import './style.scss';
+import './Login.scss';
 
 export default function Login() {
   return (

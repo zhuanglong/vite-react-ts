@@ -2,7 +2,7 @@ import { Outlet, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { TabBar } from 'antd-mobile';
 import { AppOutline, MessageOutline, UserOutline } from 'antd-mobile-icons';
 
-import './MainLayout.style.scss';
+import './MainLayout.scss';
 
 export default function MainLayout() {
   const tabs = [
