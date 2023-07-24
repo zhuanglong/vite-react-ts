@@ -6,6 +6,8 @@ import Skeleton from '@/components/Skeleton';
 import MainLayout from '@/layouts/MainLayout';
 import NoFound from '@/pages/NoFound/NoFound';
 import Login from '@/pages/Login/Login';
+import RequireAuth from './RequireAuth';
+
 // import Home from '@/pages/Home/Home';
 // import Message from '@/pages/Message/Message';
 // import Mine from '@/pages/Mine/Mine';
@@ -43,7 +45,9 @@ const router = createHashRouter([
         path: 'message',
         element: (
           <Suspense fallback={<Skeleton />}>
-            <Message />
+            <RequireAuth>
+              <Message />
+            </RequireAuth>
           </Suspense>
         ),
       },
