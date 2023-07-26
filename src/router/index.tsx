@@ -99,7 +99,7 @@ export function RouteElement() {
   const location = useLocation();
 
   React.useEffect(() => {
-    console.log(location);
+    // 路由切换钩子
   }, [location]);
 
   return <Routes>{adaptRoute(routeConfig)}</Routes>;
