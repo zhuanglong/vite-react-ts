@@ -1,16 +1,16 @@
-import { RouterProvider } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
-import router from '@/router';
+import { RouteElement } from '@/router';
 import { AuthProvider } from '@/router/AuthContext';
 
 import './App.css';
 
-function App() {
+export default function App() {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <HashRouter>
+        <RouteElement />
+      </HashRouter>
     </AuthProvider>
   );
 }
-
-export default App;

@@ -1,20 +1,19 @@
-import { lazy, Suspense } from 'react';
-import { createHashRouter } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { RouteObject, Routes, Route, useLocation } from 'react-router-dom';
 
 import Skeleton from '@/components/Skeleton';
 
-import MainLayout from '@/layouts/MainLayout';
-import NoFound from '@/pages/NoFound/NoFound';
-import Login from '@/pages/Login/Login';
 import RequireAuth from './RequireAuth';
+import PageTitle from './PageTitle';
 
-// import Home from '@/pages/Home/Home';
-// import Message from '@/pages/Message/Message';
-// import Mine from '@/pages/Mine/Mine';
-
+import MainLayout from '@/layouts/MainLayout';
+import NotFound from '@/pages/NotFound/NotFound';
+import Login from '@/pages/Login/Login';
 const Home = lazy(() => import('@/pages/Home/Home'));
 const Message = lazy(() => import('@/pages/Message/Message'));
 const Mine = lazy(() => import('@/pages/Mine/Mine'));
+
+// import Home from '@/pages/Home/Home';
 
 // 延时模拟
 // import HomeC from '@/pages/Home/Home';
@@ -28,47 +27,80 @@ const Mine = lazy(() => import('@/pages/Mine/Mine'));
 //   });
 // });
 
-const router = createHashRouter([
+export const routeConfig: RouteObject[] = [
   {
     path: '/',
     element: <MainLayout />,
     children: [
       {
-        path: 'home',
-        element: (
-          <Suspense fallback={<Skeleton />}>
-            <Home />
-          </Suspense>
-        ),
+        path: '/home',
+        meta: {
+          title: 'Home',
+        },
+        element: <Home />,
       },
       {
-        path: 'message',
-        element: (
-          <Suspense fallback={<Skeleton />}>
-            <RequireAuth>
-              <Message />
-            </RequireAuth>
-          </Suspense>
-        ),
+        path: '/message',
+        meta: {
+          title: 'Message',
+          requireAuth: true,
+        },
+        element: <Message />,
       },
       {
-        path: 'mine',
-        element: (
-          <Suspense fallback={<Skeleton />}>
-            <Mine />
-          </Suspense>
-        ),
+        path: '/mine',
+        meta: {
+          title: 'Mine',
+        },
+        element: <Mine />,
       },
     ],
   },
   {
-    path: 'login',
+    path: '/login',
+    meta: {
+      title: 'Login',
+    },
     element: <Login />,
   },
   {
-    path: '*',
-    element: <NoFound />,
+    path: '/*',
+    meta: {
+      title: 'Not Found',
+    },
+    element: <NotFound />,
   },
-]);
+];
 
-export default router;
+function adaptRoute(routes: RouteObject[]) {
+  return routes.map((route, key) => {
+    const { meta, element, ...rest } = route;
+
+    // @ts-ignore
+    const isLazyLoad = typeof element?.type === 'object';
+
+    const authElement = meta?.requireAuth ? <RequireAuth>{element}</RequireAuth> : element;
+    const lazyElement = isLazyLoad ? (
+      <Suspense fallback={<Skeleton />}>{authElement}</Suspense>
+    ) : (
+      authElement
+    );
+
+    return (
+      // @ts-ignore
+      <Route key={key} {...rest} element={<PageTitle title={meta?.title}>{lazyElement}</PageTitle>}>
+        {route.children && adaptRoute(route.children)}
+      </Route>
+    );
+  });
+}
+
+export function RouteElement() {
+  const location = useLocation();
+
+  React.useEffect(() => {
+    console.log(location);
+  }, [location]);
+
+  return <Routes>{adaptRoute(routeConfig)}</Routes>;
+}

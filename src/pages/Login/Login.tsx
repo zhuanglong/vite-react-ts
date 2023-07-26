@@ -8,17 +8,11 @@ import './Login.scss';
 export default function Login() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
-
-  const from = location.state?.from?.pathname || -1;
+  const { setIsLoggedIn } = useAuth();
 
   function signIn() {
     setIsLoggedIn(true);
-    navigate(from);
-  }
-
-  if (isLoggedIn) {
-    return <Navigate to="/" />;
+    navigate(location.state?.from?.pathname || -1);
   }
 
   return (
