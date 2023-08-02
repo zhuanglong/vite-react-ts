@@ -1,13 +1,13 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { useAuth } from './AuthContext';
+import { useUserInfoStore } from '@/stores';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
-  const { isLoggedIn } = useAuth();
+  const { userInfo } = useUserInfoStore();
   const location = useLocation();
 
-  if (!isLoggedIn) {
+  if (!userInfo) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 

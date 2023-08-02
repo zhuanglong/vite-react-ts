@@ -1,26 +1,47 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'antd-mobile';
+import { Button, Toast } from 'antd-mobile';
 
-import { useAuth } from '@/router/AuthContext';
+import { useCounterStore, useUserInfoStore } from '@/stores';
+import * as userApi from '@/api/userApi';
 
 import './Mine.scss';
 
 export default function About() {
   const navigate = useNavigate();
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const { userInfo, setUserInfo } = useUserInfoStore();
+  const { count } = useCounterStore((state) => state);
 
   const gotoLogin = () => {
     navigate('/login');
   };
 
-  const signOut = () => {
-    setIsLoggedIn(false);
-  };
+  async function signOut() {
+    Toast.show({
+      icon: 'loading',
+      content: 'signOut…',
+      maskClickable: false,
+    });
+    try {
+      const res = await userApi.logout();
+      if (res.code === 0) {
+        Toast.clear();
+        setUserInfo(null);
+      } else {
+        Toast.show({
+          icon: 'fail',
+          content: 'signOut error',
+        });
+      }
+    } catch (error) {
+      Toast.clear();
+    }
+  }
 
   return (
     <div className="Mine-page">
       <h1 className="title">Mine</h1>
-      {isLoggedIn ? (
+      <h3 className="counter">Counter: {count}</h3>
+      {userInfo ? (
         <Button className="btn" onClick={signOut}>
           Sign out
         </Button>

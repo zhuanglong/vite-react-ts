@@ -1,18 +1,40 @@
-import { useNavigate, useLocation, Navigate } from 'react-router-dom';
-import { Button } from 'antd-mobile';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { Button, Toast } from 'antd-mobile';
 
-import { useAuth } from '@/router/AuthContext';
+import { useUserInfoStore } from '@/stores';
+import * as userApi from '@/api/userApi';
 
 import './Login.scss';
 
 export default function Login() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useAuth();
+  const [searchParams] = useSearchParams();
+  const { setUserInfo } = useUserInfoStore((state) => state);
 
-  function signIn() {
-    setIsLoggedIn(true);
-    navigate(location.state?.from?.pathname || -1);
+  const path = searchParams.get('redirect') || location.state?.from?.pathname || -1;
+
+  async function signIn() {
+    Toast.show({
+      icon: 'loading',
+      content: 'signin…',
+      maskClickable: false,
+    });
+    try {
+      const res = await userApi.login({ username: 'Tom', password: '123456' });
+      if (res.code === 0) {
+        Toast.clear();
+        setUserInfo(res.data);
+        navigate(path);
+      } else {
+        Toast.show({
+          icon: 'fail',
+          content: 'signIn error',
+        });
+      }
+    } catch (error) {
+      Toast.clear();
+    }
   }
 
   return (
