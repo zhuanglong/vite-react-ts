@@ -1,0 +1,15 @@
+.Home-page {
+  background-color: antiquewhite;
+
+  :global {
+    .title {
+      padding: 20px;
+      margin: 0;
+      color: cadetblue;
+    }
+
+    .content {
+      padding: 20px;
+    }
+  }
+}

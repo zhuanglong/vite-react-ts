@@ -1,15 +1,13 @@
-import H5Rem from '@/components/H5Rem';
-import Welcome from '@/components/Welcome';
+import { BrowserRouter } from 'react-router-dom';
+
+import { RouteElement } from '@/router';
 
 import './App.css';
 
-function App() {
+export default function App() {
   return (
-    <>
-      <Welcome />
-      <H5Rem />
-    </>
+    <BrowserRouter>
+      <RouteElement />
+    </BrowserRouter>
   );
 }
-
-export default App;

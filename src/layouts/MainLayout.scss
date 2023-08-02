@@ -1,0 +1,19 @@
+.MainLayout-root {
+  .tabbar {
+    height: 50px;
+
+    .adm-tab-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      /* stylelint-disable-next-line prettier/prettier */
+      border-top: solid 1px #eee;
+      background-color: #fff;
+
+      .adm-tab-bar-wrap {
+        height: 50px;
+      }
+    }
+  }
+}

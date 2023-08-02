@@ -18,16 +18,16 @@ $blocks: 100;
 
 // 缩放所支持的设备最小宽度
 /* prettier-ignore */
-$minDeviceWidth: 320Px;
+$minDeviceWidth: 320PX;
 // 缩放所支持的设备最大宽度
 /* prettier-ignore */
-$maxDeviceWidth: 520Px;
+$maxDeviceWidth: 520PX;
 // $maxDeviceWidth: 400px;
 
 // 启用最小宽度限制
 $enableMinLimit: true;
 // 启用最大宽度限制
-$enableMaxLimit: true;
+$enableMaxLimit: false;
 
 // html 根元素的 font-size 定义
 @mixin rootFontSize() {

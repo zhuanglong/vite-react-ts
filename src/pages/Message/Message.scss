@@ -1,0 +1,18 @@
+.Message-page {
+  background-color: chocolate;
+
+  .title {
+    padding: 20px;
+    margin: 0;
+    color: #fff;
+  }
+
+  .counter {
+    padding: 20px;
+    color: #fff;
+
+    .number {
+      padding: 5px;
+    }
+  }
+}
