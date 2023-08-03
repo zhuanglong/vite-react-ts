@@ -7,6 +7,7 @@ import type {
   CreateAxiosDefaults,
   InternalAxiosRequestConfig,
 } from 'axios';
+import { Toast } from 'antd-mobile';
 
 import { useUserInfoStore } from '@/stores';
 
@@ -14,6 +15,14 @@ export interface ApiResult<T = any> {
   code: number;
   data: T;
   message: string;
+}
+
+declare module 'axios' {
+  interface AxiosRequestConfig {
+    requestOptions?: {
+      enableLoading: boolean;
+    };
+  }
 }
 
 class Request {
@@ -29,6 +38,15 @@ class Request {
     // 请求拦截器
     this.instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
       //// showLoading
+      const enableLoading = config.requestOptions?.enableLoading;
+      if (enableLoading) {
+        Toast.show({
+          icon: 'loading',
+          content: 'loading…',
+          maskClickable: false,
+        });
+      }
+
       if (config.url !== '/login') {
         const token = useUserInfoStore.getState().userInfo?.token;
         if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -46,12 +64,22 @@ class Request {
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         //// hideLoading
+        const enableLoading = response.config.requestOptions?.enableLoading;
+        if (enableLoading) {
+          Toast.clear();
+        }
+
         const url = response.config.url || '';
         this.abortControllerMap.delete(url);
         return response.data;
       },
       (error: AxiosError) => {
         //// hideLoading
+        const enableLoading = error.config?.requestOptions?.enableLoading;
+        if (enableLoading) {
+          Toast.clear();
+        }
+
         if (error.response?.status === 401) {
           useUserInfoStore.setState({ userInfo: null });
           window.location.href = `/login?redirect=${window.location.pathname}`;
@@ -135,4 +163,7 @@ class Request {
 export const httpClient = new Request({
   baseURL: '',
   timeout: 20 * 1000,
+  // requestOptions: {
+  //   enableLoading: true,
+  // },
 });
