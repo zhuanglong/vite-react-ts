@@ -3,7 +3,7 @@ export interface LoginParams {
   password: string;
 }
 
-export type LogoutInfo = null;
+export type LogoutData = null;
 
 export interface UserInfo {
   token: string;
