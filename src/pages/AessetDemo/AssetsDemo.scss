@@ -1,0 +1,52 @@
+.AssetsDemo-root {
+  padding: 20px;
+
+  .title {
+    padding: 10px 0;
+  }
+
+  .icon-font-wrapper {
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  .icons-wrapper {
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+
+    .bg-img {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-image: url('@/assets/icons/bingqilin.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  .fonts-wrapper {
+    div:nth-child(2) {
+      font-family: YouSheBiaoTiHei;
+    }
+
+    div:nth-child(3) {
+      font-family: MetroDF;
+    }
+
+    div:nth-child(4) {
+      font-family: DIN;
+    }
+  }
+
+  .lotties-wrapper {
+    div {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

@@ -12,6 +12,7 @@ import Login from '@/pages/Login/Login';
 const Home = lazy(() => import('@/pages/Home/Home'));
 const Message = lazy(() => import('@/pages/Message/Message'));
 const Mine = lazy(() => import('@/pages/Mine/Mine'));
+const AssetsDemo = lazy(() => import('@/pages/AessetDemo/AssetsDemo'));
 
 // import Home from '@/pages/Home/Home';
 
@@ -55,6 +56,13 @@ export const routeConfig: RouteObject[] = [
         element: <Mine />,
       },
     ],
+  },
+  {
+    path: '/assets-demo',
+    meta: {
+      title: 'AssetsDemo',
+    },
+    element: <AssetsDemo />,
   },
   {
     path: '/login',

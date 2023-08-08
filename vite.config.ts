@@ -131,6 +131,8 @@ export default defineConfig(({ command, mode }) => {
       // 解决钉钉 webview(Chrome/69.x.x) “SyntaxError: Unexpected token ?” 错误
       target: 'chrome70',
 
+      // assetsInlineLimit: 10240, // 对 .svg 不生效
+
       // 防止 vite 将 rgba() 颜色转化为 #RGBA 十六进制符号的形式
       // https://cn.vitejs.dev/config/#build-csstarget
       cssTarget: 'chrome61',

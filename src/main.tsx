@@ -1,3 +1,6 @@
+// 字体
+import './assets/fonts/font.css';
+
 // 全局样式
 import './design/normalize.css';
 import './design/global.scss';
@@ -7,6 +10,9 @@ import './design/flexible/flexible.js';
 
 // antd-mobile 的公共样式
 import 'antd-mobile/es/global';
+
+// 字体图标
+import './assets/iconfont/iconfont.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

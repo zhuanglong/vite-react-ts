@@ -15,6 +15,7 @@ module.exports = {
   }],
   rules: {
     // https://github.com/ream88/stylelint-config-idiomatic-order
+    'font-family-no-missing-generic-family-keyword': null,
     'import-notation': null,
     'comment-empty-line-before': null,
     'function-no-unknown': null, // 禁用未知函数
