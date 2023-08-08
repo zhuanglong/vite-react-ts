@@ -20,7 +20,6 @@ const useCounterStore = create<CounterState>()(
 const unsubscribe = useCounterStore.subscribe(
   (state) => state.count,
   (count, previousCount) => {
-    console.log(count);
     counterStorage.setItem(count);
   },
   {

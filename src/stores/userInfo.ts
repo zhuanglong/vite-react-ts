@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { UserInfo } from '@/api/userApi/types';
+import { ResUserInfo } from '@/api/userApi/types';
 
 interface UserInfoState {
-  userInfo: UserInfo | null;
+  userInfo: ResUserInfo | null;
   setUserInfo: (info: UserInfoState['userInfo']) => void;
 }
 

@@ -1,11 +1,11 @@
-export interface LoginParams {
+export interface ReqLogin {
   username: string;
   password: string;
 }
 
-export type LogoutData = null;
+export type ResLogout = null;
 
-export interface UserInfo {
+export interface ResUserInfo {
   token: string;
   date: string;
   username: string;
