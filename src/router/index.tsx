@@ -60,7 +60,7 @@ export const routeConfig: RouteObject[] = [
   {
     path: '/assets-demo',
     meta: {
-      title: 'AssetsDemo',
+      title: 'Assets Demo',
     },
     element: <AssetsDemo />,
   },

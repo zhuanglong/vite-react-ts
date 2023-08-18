@@ -9,3 +9,4 @@ node_modules
 dist
 /public
 Dockerfile
+types/svg-component.d.ts

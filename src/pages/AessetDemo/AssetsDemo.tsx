@@ -1,5 +1,6 @@
 import React from 'react';
 import lottie from 'lottie-web';
+import SvgIcon from '~virtual/svg-component';
 
 import bangbangtangIcon from '@/assets/icons/bangbangtang.svg';
 import Polite_Chicky from '@/assets/lotties/Polite_Chicky.json';
@@ -57,6 +58,10 @@ export default function AssetsDemo() {
         <img src={getImg('baomihua')} alt="icon" />
         <img src={getImg('sanmingzhi')} alt="icon" />
         <span className="bg-img" />
+        <div className="svg-row">
+          <SvgIcon name="hanbao" />
+          <SvgIcon name="pintu" />
+        </div>
       </div>
       <div className="lotties-wrapper">
         <h3 className="title">Lotties</h3>

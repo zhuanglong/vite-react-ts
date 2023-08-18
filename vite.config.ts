@@ -11,6 +11,7 @@ import { createHtmlPlugin } from 'vite-plugin-html'; // 插入数据到 index.ht
 import { viteMockServe } from 'vite-plugin-mock';
 import postCssPxToRem from 'postcss-pxtorem';
 import autoprefixer from 'autoprefixer';
+import UnpluginSvgComponent from 'unplugin-svg-component/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -43,6 +44,13 @@ export default defineConfig(({ command, mode }) => {
             title: env.VITE_APP_NAME,
           },
         },
+      }),
+      UnpluginSvgComponent({
+        iconDir: resolve(__dirname, './src/assets/icons'),
+        preserveColor: resolve(__dirname, './src/assets/icons'),
+        dts: true,
+        dtsDir: resolve(__dirname, './types'),
+        componentStyle: 'width: 1em; height: 1em;',
       }),
       isBuildReport &&
         visualizer({
@@ -138,14 +146,14 @@ export default defineConfig(({ command, mode }) => {
       cssTarget: 'chrome61',
 
       // https://rollupjs.org/guide/en/#outputoptions-object
-      // rollupOptions: {
-      //   output: {
-      //     // js 和 css 文件夹分离
-      //     chunkFileNames: 'js/[name]-[hash].js',
-      //     entryFileNames: 'js/[name]-[hash].js',
-      //     assetFileNames: 'assets/[name]-[hash].[ext]',
-      //   },
-      // },
+      rollupOptions: {
+        output: {
+          // js 和 css 文件夹分离
+          chunkFileNames: 'js/[name]-[hash].js',
+          entryFileNames: 'js/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash].[ext]',
+        },
+      },
     },
   };
 });
