@@ -59,14 +59,14 @@ export default defineConfig(({ command, mode }) => {
           gzipSize: true,
           brotliSize: true,
         }),
-      !isBuildReport &&
-        isBuild &&
-        compressPlugin({
-          ext: '.gz',
-          filter: /\.(js|css)$/i,
-          threshold: 10240,
-          deleteOriginFile: true,
-        }),
+      // !isBuildReport &&
+      //   isBuild &&
+      //   compressPlugin({
+      //     ext: '.gz',
+      //     filter: /\.(js|css)$/i,
+      //     threshold: 10240,
+      //     deleteOriginFile: true,
+      //   }),
       // 解决 dev 模式无法在 Chrome 70 下使用 optional chaining 语法，https://github.com/vitejs/vite/issues/5222
       // 目前钉钉 webview 的内核是 Chrome/69.x.x，如需在钉钉上调试，请启用 esbuild
       {
