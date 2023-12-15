@@ -1,10 +1,7 @@
-import React, { lazy, Suspense } from 'react';
-import { RouteObject, Routes, Route, useLocation } from 'react-router-dom';
+import React, { lazy } from 'react';
+import { RouteObject, HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 
-import Skeleton from '@/components/Skeleton';
-
-import RequireAuth from './RequireAuth';
-import PageTitle from './PageTitle';
+import Guard from './Guard';
 
 import MainLayout from '@/layouts/MainLayout';
 import NotFound from '@/pages/NotFound/NotFound';
@@ -82,33 +79,30 @@ export const routeConfig: RouteObject[] = [
 
 function adaptRoute(routes: RouteObject[]) {
   return routes.map((route, key) => {
-    const { meta, element, ...rest } = route;
-
-    // @ts-ignore
-    const isLazyLoad = typeof element?.type === 'object';
-
-    const authElement = meta?.requireAuth ? <RequireAuth>{element}</RequireAuth> : element;
-    const lazyElement = isLazyLoad ? (
-      <Suspense fallback={<Skeleton />}>{authElement}</Suspense>
-    ) : (
-      authElement
-    );
-
     return (
       // @ts-ignore
-      <Route key={key} {...rest} element={<PageTitle title={meta?.title}>{lazyElement}</PageTitle>}>
+      <Route key={key} path={route.path} element={<Guard route={route} />}>
         {route.children && adaptRoute(route.children)}
       </Route>
     );
   });
 }
 
-export function RouteElement() {
+// 这里包一层为了做路由切换钩子
+function RouteElement() {
   const location = useLocation();
 
   React.useEffect(() => {
-    // 路由切换钩子
+    // 路由变化
   }, [location]);
 
   return <Routes>{adaptRoute(routeConfig)}</Routes>;
+}
+
+export function AppRouter() {
+  return (
+    <HashRouter>
+      <RouteElement />
+    </HashRouter>
+  );
 }
