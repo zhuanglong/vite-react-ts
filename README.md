@@ -1,6 +1,5 @@
 # React + TS 移动端模板
 
-
 ## 特点
 
 - 使用最新的 Vite, React, TypeScript, Zustand 等主流技术开发
@@ -23,14 +22,11 @@
 # clone
 git clone https://github.com/zhuanglong/vite-react-ts.git
 
-
 # 切换到项目
 cd vite-react-ts
 
-
 安装依赖
 # yarn install
-
 
 # 运行
 yarn dev

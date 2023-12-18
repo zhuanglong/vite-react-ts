@@ -95,7 +95,7 @@ class Request {
           // 请求已发出，但是不在 2xx 的范围
           errMessage = this.matchHttpStatusCode(error?.response.status);
         } else {
-          errMessage = '网络异常，请检查您的网络连接是否正常';
+          errMessage = 'request system error';
         }
         console.warn('request error:', errMessage);
 
@@ -142,7 +142,7 @@ class Request {
         errMessage = '服务器错误';
         break;
       default:
-        errMessage = `未知错误 ${status}`;
+        errMessage = `Unknown status code ${status}`;
     }
     return errMessage;
   }
