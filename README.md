@@ -1,4 +1,4 @@
-# React + TS 移动端模板
+# Vite + React + TS 移动端模板
 
 ## 特点
 
@@ -6,7 +6,7 @@
 - 代码规范，ESLint + Prettier + StyleLint
 - 移动端适配(rem+vw)，postcss-pxtorem 编译时转换
 - Mock Server 模拟数据方案
-- 够用的请求封装，包括异常处理，中断请求等
+- 请求封装，包括异常处理，中断请求等
 - 首屏 Loading，登录校验，zustand 状态管理及持久化
 - 字体图标，字体资源，SvgIcon
 
